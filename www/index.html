@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<!-- Designed and developed by Business Solution Apps team v -->
+
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>M-Reporting</title>
+		<!--<link rel="stylesheet" href="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.css" />-->
+        <!--<script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
+        <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>-->
+
+		<!--<link rel="stylesheet" href="static/uni.css" />
+		<link rel="stylesheet" href="static/my.css" />-->
+        
+        
+        
+        <link rel="stylesheet" href="static/my.css"  />
+		<link rel="stylesheet" href="static/themes/c.min.css" />
+		<link rel="stylesheet" href="static/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.css" />
+        
+        <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
+        <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
+        <script src="static/my.js"> </script>
+        
+        
+        
+	</head>
+    <body>
+
+	<!--<div data-role="tabs" id="tabs">-->
+
+		<!--=====================Log in===============#CCE6E6===-->
+
+
+
+
+<div data-theme="c" data-role="page" id="pageHome">
+        <div data-theme="c" data-role="header" data-position="fixed" >
+            <a  data-role="button" href="#leftpanel3" class="ui-btn-left ui-btn-icon-notext"><img style="height:15px; " src="menu.png"></a>
+            <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-btn-icon-notext"  onClick="exit()"><img style="height:15px; " src="exit.png"></a>
+            <h5>M-Reporting</h5>
+        </div>
+    <div data-role="content">
+            <div id="myerror" style="color:#C00;"></div>
+            <div data-role="fieldcontain">
+               <a data-role="button" data-transition="slide" onClick="getclientList();" data-icon="arrow-r" data-iconpos="right" >Client</a>
+
+               <a data-role="button" data-transition="slide"  href="#noticeBoard" data-icon="arrow-r" data-iconpos="right" >Notice Board</a>
+            </div>
+    </div>
+    <div data-theme="c" data-role="footer" data-position="fixed" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small; color:#FFF; text-align:center">M-Reporting-140823</div> 
+    <!--panel start-->
+    <div data-role="panel" id="leftpanel3" data-display="overlay" data-theme="c" >
+        <br/>
+        <div align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:20px; color:#036"><img src="lafarge.png" alt="Grameen Phone" /></div>
+        <br/><br/><br/><br/>
+        <ul data-role="listview">
+          
+            
+            <li><a href="#pageSync">Authorization</a></li>
+        </ul>
+        <br/><br/><br/><br/>
+
+    
+        <div style="height:100%;"></div>
+        <div align="center" ><img src="logo_gp.png" alt="Grameen Phone" /></div>
+      </div>           
+    <!--panel end-->
+    </div><!---------/page--> 
+	
+	
+	
+	
+	
+	<!--=====================Sync page=========================-->
+	
+	<div data-theme="c" data-role="page" id="pageSync">
+        
+            <div data-theme="c" data-role="header" data-position="fixed">
+              <a  data-role="button" href="#pageHome" class="ui-btn-left ui-btn-icon-notext" ><img src="menu.png"></a>               
+              <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+                <h3>Authorization</h3>
+            </div>
+
+            <div data-role="content">
+            	<div id="mySyncError" style="color:#03C"></div>
+				<ul data-role="listview" data-divider-theme="c" data-inset="true">
+                    <li data-role="list-divider" role="heading">Authorization</li>
+				</ul>
+			
+				<input name="cid" id="cid"  value="LAFARGE" type="text" placeholder="CID" readonly>	
+				<input name="repid" id="repid"  value="" type="text" placeholder="User ID">	
+				<input type="password" name="" id="password"  value="" placeholder="Password">	
+				<input type="submit" onClick="basic_sync();" id="basicSync" name="basicSync" value="Submit" >
+				
+                <br>
+				 <div id="login_wait" >
+                </br>              
+                <img height="40px" width="40px" src="loading.gif"></div>
+               <!-- <ul data-role="listview" data-divider-theme="c" data-inset="true">
+                    <li data-role="list-divider" role="heading">Clear Authorization</li>
+				</ul>
+                <input type="submit" id="clearSync" onClick="clearSync()" name="clearSync" value="Clear Sync" > -->
+                <br><br><br><br><br><br><br><br><br><br>
+                
+                <div style="color:#CCC" align="right"> build 20171113a</div>
+            </div>
+            
+            <!--==========footer======-->	
+            <div data-theme="c" data-role="footer" data-position="fixed">
+
+		
+
+	</div>
+
+<!--==============footer end==============-->		
+
+
+
+</div>
+	
+	
+	
+	
+	
+	
+	
+	 
+<!--===========================================================-->
+<div data-theme="c" data-role="page" id="pageClient" >
+
+		
+
+            <div data-theme="c" data-role="header" data-position="fixed">
+
+				<a  data-role="button" href="#pageHome" class="ui-btn-left ui-btn-icon-notext"><img style="height:15px; " src="menu.png"></a>
+
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+
+                <h3>Select Client</h3>
+
+            </div>
+
+			
+
+			<div data-role="content">	
+
+			<div id="mySyncError_client"></div>
+
+            		<div id="clientErrMsg" style="color:#990000"></div>
+
+					
+
+                    <div id="clientList" style="display:none"> </div>
+
+              <!--<ul data-role="listview" data-divider-theme="b" data-inset="true"><li data-role="list-divider" role="heading">Select Outlet </li></ul>-->
+ 
+    <select id="clientID_S" width="60%" data-native-menu="false">
+    <option value="">Select Client</option>
+    </select>
+    
+		
+            <input type="submit" id="clientSync" name="clientSync" value="Requisition" onClick="getOrder();" >
+
+            <br>
+			<input type="submit" id="clientSync" name="clientSync" value="Status Report" onClick="getStatusReport();" >
+			<input type="submit" id="clientSync" name="clientSync" value="Dispatch Report" onClick="getDespatchReport();" >
+			<br><br><br><br><br><br><br><br><br>	
+                
+            <input name="clientID" id="clientID" placeholder="" value="" type="hidden">
+            <input name="clientName" id="clientName" placeholder="" value="" type="hidden">
+            <input name="zoneId" id="zoneId" placeholder="" value="" type="hidden">
+
+<div id="path_show"> </div>
+        </div>
+				<!--==========footer======-->	
+
+        <div data-theme="c" data-role="footer" data-position="fixed">
+	</div>
+	
+	<!--panel start-->
+    <!--<div data-role="panel" id="leftpanel3" data-display="overlay" data-theme="c" >
+        <br/>
+        <div align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:20px; color:#036"><img src="lafarge.png" alt="Grameen Phone" /></div>
+        <br/><br/><br/><br/>
+        <ul data-role="listview">
+          
+            
+            <li><a href="#pageSync">Authorization</a></li>
+        </ul>
+        <br/><br/><br/><br/>
+
+    
+        <div style="height:100%;"></div>
+        <div align="center" ><img src="logo_gp.png" alt="Grameen Phone" /></div>
+      </div>-->           
+    <!--panel end-->
+	
+	
+	</div> <!--end Page-->
+
+      
+
+		 
+		 <!--=====================Notice Board Page==================-->
+
+		<div data-theme="c" data-role="page" id="noticeBoard">
+
+            <div data-theme="c" data-role="header" data-position="fixed">
+
+			<a  data-role="button" href="#pageHome" class="ui-btn-left ui-btn-icon-notext"><img src="menu.png"></a>
+
+            <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+
+                <h3>Notice Board</h3>
+
+            </div>
+
+			
+
+            <div data-role="content">
+
+			
+
+				<div id="myerror" style="color:#C00"></div>
+
+                
+
+                <div data-role="fieldcontain">
+
+					<div id="notice" style="background-color:#E8F3FF; width:100%; height:200px; border-radius:10px;"></div>
+
+                   
+
+                </div>
+
+				
+
+            </div><!--/cont-->
+
+			
+
+			<div data-theme="c" data-role="footer" data-position="fixed">
+
+				
+
+			</div>
+
+			
+
+		
+
+		 </div><!--/page-->   
+
+        
+        
+        <!--===================== pageSync ==================-->
+
+				
+
+
+    <!-- ===============Client List ================== -->
+
+        
+<!--==============footer end==============-->
+	
+
+    
+
+    
+
+   
+
+<!--  ==================== Requisition  ========-->
+
+    <div data-theme="c" data-role="page" id="pageOrder">
+
+            <div data-theme="c" data-role="header" data-position="fixed">
+
+                <a  data-role="button" href="#pageClient" class="ui-btn-left ui-btn-icon-notext"><img src="menu.png"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">
+                    Back
+                </a>
+
+                <h3>Requisition</h3>
+
+            </div>
+
+           
+		    <div data-role="content" style="overflow:scroll">
+               <div id="clientDiv"></div>
+			   
+			   
+			   
+              <!--==============product start======== -->
+               <select id="productCombo" width="60%" data-native-menu="false">
+                <option value="" >Product</option>
+                </select>
+                
+
+           
+		   <input name="qty" id="qty" placeholder="QTY" value="" type="number">
+		   
+		   
+				<!--==============depot start======== -->
+               <select id="depotCombo" width="60%" data-native-menu="false">
+                <option value="">Depot</option>
+              </select>
+                
+
+			   <!--==============transport start======== -->
+               <select id="transportCombo" width="60%" data-native-menu="false">
+                <option value="">Transport</option>
+              </select>
+                
+
+			   
+			   
+			   <!--==============payment start======== -->
+               <select id="paymentCombo" width="60%" data-native-menu="false">
+                <option value="">Payment</option>
+              </select>
+                
+
+			   
+			  <!--==============depot delevery start======== -->
+               <select id="delCombo" width="60%" data-native-menu="false">
+                <option value="">Delevery</option>
+              </select>
+                
+
+
+			  </br></br>
+			  
+			   <div id="orderError" style="color:#990000"></div>
+                <a data-role="button" data-transition="slide" onClick="ordNext()" data-icon="arrow-r" data-iconpos="right">Next ></a>
+     		 </div>  <br><br><br><br><br><br><br><br><br><br>
+             
+             
+             
+             
+            <!--<input name="lat" id="lat" placeholder="" value="" type="text">
+            <input name="long" id="long" placeholder="" value="" type="text">-->
+
+        <!--==========footer======-->	
+	<div data-theme="a" data-role="footer" role="main" style="font-size:12px;background-color:#CCC; color:#E1E1E1;" data-position="fixed">
+	<span id="ordErrMsg" style="color:#FF0000; float:left;"></span>
+	 
+	 </div>   
+<!--==============footer end==============-->	
+ </div>
+
+
+
+<!--=============================requisition show start=================================-->
+<div data-theme="c" data-role="page" id="pageOrderShow">
+
+            <div data-theme="c" data-role="header" data-position="fixed">
+
+                <a  data-role="button" href="#pageClient" class="ui-btn-left ui-btn-icon-notext"><img src="menu.png"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">
+                    Back
+                </a>
+
+                <h3>Requisition</h3>
+
+            </div>
+
+           
+		    <div data-role="content"   style=" height:500px;overflow:scroll">
+               <div id="clientDivreqShow"></div>
+			   
+			   
+			   
+             
+           
+		   <input name="price" id="price" placeholder="Price" value="" type="number" onKeyUp="changePrice()">
+		   <input name="totalPrice" id="totalPrice" placeholder="TotalPrice" value="" type="number">
+		   
+		   
+			
+			  
+			  <input name="chq" id="chq" placeholder="CHQ" value="" type="text">
+			  <!--==============bank start======== -->
+               <select id="bankCombo" width="60%" data-native-menu="false">
+                <option value="">Bank</option>
+              </select>
+                
+
+			   <input name="branch" id="branch" placeholder="Branch" value="" type="text">
+			   <input name="remark" id="remark" placeholder="remark" value="" type="text">
+			   <input name="s_date" id="s_date" placeholder="Date" value="" type="date">
+               <br>
+               
+               <div id="alert_show" style="color:#AC0461"> </div>
+                <div id="login_image" >
+                </br>              
+                <img height="40px" width="40px" src="loading.gif"></div>
+                
+                <a id="OrderSubmitButton" data-role="button" data-transition="slide" onClick="orderSubmit()"  data-iconpos="right">Submit</a>
+			   
+			   <div  style=" height:auto; width:100%; background-color:#F0FBF7">
+			   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td width="5px">&nbsp;</td>
+				   
+					<td>
+					</br>
+					<div id="reqInfo" style=" height:auto; width:100%; background-color:#F0FBF7">
+				   </div>
+					</br>
+					
+					</td>
+				  </tr>
+				</table>
+
+				   
+			   
+			   </div>
+
+
+
+				
+     		 </div>  <br><br><br><br><br><br><br><br><br><br>
+
+
+        <!--==========footer======-->	
+	<div data-theme="a" data-role="footer" role="main" style="font-size:12px;background-color:#CCC; color:#E1E1E1;" data-position="fixed">
+	<span id="ordErrMsg" style="color:#FF0000; float:left;"></span>
+	
+	 </div>   
+<!--==============footer end==============-->	
+ </div>
+
+<!--==============================requisition show end===================================-->
+
+
+
+
+
+
+
+<!--  ===================== End Page ==============-->  		
+
+		<div data-theme="c" data-role="page" id="pageEnd">
+
+		    <div data-theme="c" data-role="header">
+
+			<a  data-role="button" href="#pageClient" class="ui-btn-left ui-btn-icon-notext"><img src="menu.png"></a>
+
+		        <h3>Success</h3>
+
+		    </div>
+
+	      <div data-role="content" align="center">
+			<div  style="background-image:url(result_back.png); background-repeat:no-repea; width:300px; height:200px; color:#FFF; font-size:20px;"  align="center">
+		  		
+				</br></br>
+				<b>Submitted Successfully.</b>
+
+                <div id="successVno"></div>
+
+				
+				</div>
+				<!--<ul>
+
+		    		<li>You Can Create New Order</li>
+
+                    <li>You Can Exit The Application</li>
+
+		    	</ul>-->
+
+					<!--<a data-role="button" data-transition="slide" data-icon="arrow-l" data-iconpos="left"  onClick="clientList()" >New Order</a>-->
+
+                    <a data-role="button" data-transition="slide"  data-icon="arrow-r" data-iconpos="right"  onClick="pageEndNextClient()" >New</a>	
+
+                   <!-- <a data-role="button" data-transition="slide" href="#pageHome" data-icon="arrow-r" data-iconpos="right"  onClick="exit()" >Exit</a>	-->	        	
+
+		    </div>
+
+			
+
+		  <!--  <div data-theme="a" data-role="footer" style="font-size:12px;background-color:#CCC; color:#E1E1E1;" align="center" > m-Reporting</div>-->
+
+		  
+
+		  	<!--==========footer======-->	
+
+<div data-theme="c" data-role="footer"  data-position="fixed">
+
+		
+
+	</div>
+
+
+
+<!--==============footer end==============-->	
+
+		</div>
+
+		
+
+<!--============================================================-->		
+
+<!--</div>-->
+
+
+
+
+
+
+
+ <!--=====================Report Page==================-->
+
+		<div data-theme="c" data-role="page" id="reportPage">
+
+            <div data-theme="c" data-role="header" data-position="fixed">
+
+			<a  data-role="button" href="#pageClient" class="ui-btn-left ui-btn-icon-notext"><img src="menu.png"></a>
+
+            <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+
+                <h3>Report</h3>
+
+            </div>
+
+			
+
+            <div data-role="content">
+
+			
+
+				<div id="myerrorReport" style="color:#C00"></div>
+
+                
+
+                <div data-role="fieldcontain">
+
+					<!--<div id="report" style="background-color:#E8F3FF; width:100%; height:200px; border-radius:10px;"></div>-->
+                    <div id="report" >
+                              
+                    <img height="40px" width="40px" src="loading.gif">
+                    
+                    </div>
+
+                   
+
+                </div>
+
+				
+
+            </div><!--/cont-->
+
+			
+
+			<div data-theme="c" data-role="footer" data-position="fixed">
+
+				
+
+			</div>
+
+			
+
+		
+
+		 </div><!--/page-->   
+
+
+
+    </body>
+
+</html>
