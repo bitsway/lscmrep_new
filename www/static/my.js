@@ -306,7 +306,7 @@ function clientList() {
 function shipTo() {	
 		var clientID=localStorage.clientID
 		clientID=clientID.replace(' ','')
-		var str=encodeURI(localStorage.cid) + '/' + localStorage.clientID + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
+		var str=encodeURI(localStorage.cid) + '/' + clientID + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
 		alert (apipath_shipto+"syncRep/"+str)
 		
 		$("#shiptoText").val(apipath_shipto+"syncRep/"+str);
