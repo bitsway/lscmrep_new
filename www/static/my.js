@@ -304,7 +304,8 @@ function clientList() {
 
 //===========================
 function shipTo() {	
-		var httpPass=''
+		var clientID=localStorage.clientID
+		clientID=clientID.replace(' ','')
 		var str=encodeURI(localStorage.cid) + '/' + localStorage.clientID + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
 		alert (apipath_shipto+"syncRep/"+str)
 		
