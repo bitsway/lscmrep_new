@@ -38,6 +38,7 @@ function onSuccess(position) {
 
 //var apipath= 'http://localhost/mrep-v002/sync/';
 var apipath= 'http://im-gp.com/mrep-v002/sync/';
+var apipath_shipto= 'http://im-gp.com/mrep-v002/syncshipto/';
 
 var httpPass='abc123Z';
  
@@ -301,6 +302,71 @@ function clientList() {
 	//ob.prepend("<option value=''>Select Outlet</option>");					
 }
 
+//===========================
+function shipTo() {	
+		var httpPass=''
+		var str=encodeURI(localStorage.cid) + '/' + encodeURI(localStorage.clientID) + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
+
+		$.ajax({
+
+				 url:  apipath_shipto+"syncRep/"+str,
+				 success: function(result) {
+					// alert (loginResult);
+						 loginResult=result
+
+						if (loginResult==''){
+							
+							$("#mySyncError").html('Error: 10002 Network Time out');
+
+						}
+						if (loginResult=='Failed'){
+							$("#mySyncError").html('Failed');
+						}
+						if ((loginResult!='Failed') & (loginResult!='')){
+							
+							var shipto = loginResult.split('</MREPSYNC>').replace('<MREPSYNC>','');			
+
+									localStorage.shipto=shipto;
+									
+									$('#clientID_S').empty();
+									var clientArray=localStorage.shipto.split('<fd><rd>')	
+									var ob = $("#shiptoCombo");
+									var value="";
+									var text="Select Shipto";
+									for (var c=0; c<clientArray.length-1; c++){
+										var clientIdNameArray = clientArray[c].split('<fd>');
+										//alert (clientIdNameArray); 
+										var shipto_code=clientIdNameArray[0]
+										var shiptoparty_name=clientIdNameArray[1]
+										
+										
+										ob.prepend("<option value='"+ shipto_code+'|'+shiptoparty_name  +"'>" + shipto_code+'|'+shiptoparty_name + "</option>");
+										}	
+								
+							
+							//---------------
+						}else{
+							$("#mySyncError").html('Error: 10003 Network Time out');
+						}
+				  },
+				  error: function(result) {
+					 		$("#mySyncError").html('Error: 10003 Network Time out');
+				  }
+				  
+			});//end ajax
+
+
+}
+
+//=========================
+
+
+
+
+
+
+
+
 function productList() {	
 	$('#productCombo').empty();
 	var productArray=localStorage.itemListStr.split('<fd><rd>')	
@@ -441,6 +507,8 @@ function getOrder() {
 				DareaList();
 				paymentList();
 				bankList();
+				
+				shipTo();
 				
 				var url = "#pageOrder";  
 				$.mobile.navigate(url); 
