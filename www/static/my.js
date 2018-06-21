@@ -328,21 +328,20 @@ function shipTo() {
 						if ((loginResult!='Failed') & (loginResult!='')){
 							
 							var shipto = loginResult.split('</MREPSYNC>')[0].replace('<MREPSYNC>','');			
-							alert (shipto)
+							
 									localStorage.shipto=shipto;
-									alert (localStorage.shipto)
+									
 									$('#shiptoCombo').empty();
 									var clientArray=localStorage.shipto.split('<fd><rd>')	
 									var ob = $("#shiptoCombo");
 									var value="";
 									var text="Select Shipto";
-									for (var c=0; c<clientArray.length-1; c++){
+									for (var c=0; c<clientArray.length; c++){
 										var clientIdNameArray = clientArray[c].split('<fd>');
 										
 										var shipto_code=clientIdNameArray[0]
 										var shiptoparty_name=clientIdNameArray[1]
-										alert (shipto_code); 
-										alert (shiptoparty_name); 
+										
 										
 										ob.prepend("<option value='"+ shipto_code+'|'+shiptoparty_name  +"'>" + shipto_code+'|'+shiptoparty_name + "</option>");
 										}	
@@ -666,6 +665,8 @@ function orderSubmit() {
 		var  remark=$("#remark").val();
 		var  s_date=$("#s_date").val();
 		
+		var  shiptoCombo=$("#shiptoCombo").val();
+		
 		
 		if (chq.length ==0 ){
 			chq_b='-';
@@ -694,6 +695,8 @@ function orderSubmit() {
 		localStorage.branch=branch;
 		localStorage.remark=remark;
 		localStorage.s_date=s_date;
+		if (shiptoCombo!=''){shipto_code=shiptoCombo.split('|')[0];shiptoparty_name=shiptoCombo.split('|')[1]}
+		else{shipto_code='';shiptoparty_name=''}
 		
 		
 		//alert (localStorage.cid);
@@ -706,7 +709,7 @@ function orderSubmit() {
 	
 	
 	
-	var str_submit= localStorage.cid + '/' + httpPass + '/' + localStorage.userid + '/' + localStorage.synccode + '/' + localStorage.product + '/' + localStorage.clientID + '/' + localStorage.zoneId + '/' +localStorage.delivery + '/' + localStorage.payment + '/' + localStorage.transport + '/' + localStorage.depotId + '/' + localStorage.getPrice + '/' + localStorage.qty + '/' +localStorage.chq + '/' + localStorage.bank + '/' + localStorage.branch + '/' + localStorage.remark + '/' + localStorage.s_date
+	var str_submit= localStorage.cid + '/' + httpPass + '/' + localStorage.userid + '/' + localStorage.synccode + '/' + localStorage.product + '/' + localStorage.clientID + '/' + localStorage.zoneId + '/' +localStorage.delivery + '/' + localStorage.payment + '/' + localStorage.transport + '/' + localStorage.depotId + '/' + localStorage.getPrice + '/' + localStorage.qty + '/' +localStorage.chq + '/' + localStorage.bank + '/' + localStorage.branch + '/' + localStorage.remark + '/' + localStorage.s_date+ '/' + shipto_code+ '/' + shiptoparty_name
 //	$("#alert_show").html (apipath+'/requisition/'+str_submit);
 	
 
@@ -714,7 +717,7 @@ function orderSubmit() {
 	
 	$.ajax({
 			 // url: apipath+'getSubmitResultOrd?cid='+localStorage.cid+'&repid='+localStorage.userid+'&password='+localStorage.password+'&synccode='+localStorage.synccode +'&productId='+localStorage.product +'&clientId='+localStorage.clientID+'&zoneId='+localStorage.zoneId+'&areaId='+localStorage.delivery+'&payType='+localStorage.payment +'&transport='+localStorage.transport +'&depotCode='+localStorage.depotId+'&price='+localStorage.getPrice + '&qty='+localStorage.qty + '&chq='+localStorage.chq + '&bank='+localStorage.bank + '&bankBranch='+localStorage.branch + '&remark='+localStorage.remark + '&deliveryDate='+localStorage.s_date,
-			  url: apipath+'/requisition/'+str_submit,
+			  url: apipath_shipto+'/requisition/'+str_submit,
 			  success: function(result) {
 				//alert (result);
 				if (result!='NO'){
