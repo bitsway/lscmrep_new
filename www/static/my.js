@@ -316,7 +316,7 @@ function shipTo() {
 				 success: function(result) {
 					
 						 loginResult=result
-
+						alert (loginResult)
 						if (loginResult==''){
 							
 							$("#mySyncError").html('Error: 10002 Network Time out');
