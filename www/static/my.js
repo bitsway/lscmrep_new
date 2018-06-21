@@ -327,7 +327,7 @@ function shipTo() {
 						}
 						if ((loginResult!='Failed') & (loginResult!='')){
 							
-							var shipto = loginResult.split('</MREPSYNC>').replace('<MREPSYNC>','');			
+							var shipto = loginResult.split('</MREPSYNC>')[0].replace('<MREPSYNC>','');			
 							alert (shipto)
 									localStorage.shipto=shipto;
 									alert (localStorage.shipto)
