@@ -307,14 +307,14 @@ function shipTo() {
 		var clientID_1=localStorage.clientID
 		clientID=clientID_1.replace(' ','')
 		var str=encodeURI(localStorage.cid) + '/' + clientID + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
-		alert (apipath_shipto+"syncRep/"+str)
+	//	alert (apipath_shipto+"syncRep/"+str)
 		
 		$("#shiptoText").val(apipath_shipto+"syncRep/"+str);
 		$.ajax({
 
 				 url:  apipath_shipto+"syncRep/"+str,
 				 success: function(result) {
-					// alert (loginResult);
+					 alert (loginResult);
 						 loginResult=result
 
 						if (loginResult==''){
@@ -331,7 +331,7 @@ function shipTo() {
 
 									localStorage.shipto=shipto;
 									
-									$('#clientID_S').empty();
+									$('#shiptoCombo').empty();
 									var clientArray=localStorage.shipto.split('<fd><rd>')	
 									var ob = $("#shiptoCombo");
 									var value="";
