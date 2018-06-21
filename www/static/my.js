@@ -316,7 +316,7 @@ function shipTo() {
 				 success: function(result) {
 					
 						 loginResult=result
-						alert (loginResult)
+						
 						if (loginResult==''){
 							
 							$("#mySyncError").html('Error: 10002 Network Time out');
@@ -328,7 +328,7 @@ function shipTo() {
 						if ((loginResult!='Failed') & (loginResult!='')){
 							
 							var shipto = loginResult.split('</MREPSYNC>').replace('<MREPSYNC>','');			
-
+							alert (shipto)
 									localStorage.shipto=shipto;
 									alert (localStorage.shipto)
 									$('#shiptoCombo').empty();
