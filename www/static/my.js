@@ -314,7 +314,7 @@ function shipTo() {
 
 				 url:  apipath_shipto+"syncRep/"+str,
 				 success: function(result) {
-					 alert (result);
+					
 						 loginResult=result
 
 						if (loginResult==''){
@@ -330,7 +330,7 @@ function shipTo() {
 							var shipto = loginResult.split('</MREPSYNC>').replace('<MREPSYNC>','');			
 
 									localStorage.shipto=shipto;
-									
+									alert (localStorage.shipto)
 									$('#shiptoCombo').empty();
 									var clientArray=localStorage.shipto.split('<fd><rd>')	
 									var ob = $("#shiptoCombo");
@@ -338,10 +338,11 @@ function shipTo() {
 									var text="Select Shipto";
 									for (var c=0; c<clientArray.length-1; c++){
 										var clientIdNameArray = clientArray[c].split('<fd>');
-										//alert (clientIdNameArray); 
+										
 										var shipto_code=clientIdNameArray[0]
 										var shiptoparty_name=clientIdNameArray[1]
-										
+										alert (shipto_code); 
+										alert (shiptoparty_name); 
 										
 										ob.prepend("<option value='"+ shipto_code+'|'+shiptoparty_name  +"'>" + shipto_code+'|'+shiptoparty_name + "</option>");
 										}	
