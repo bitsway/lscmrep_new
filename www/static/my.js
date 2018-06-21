@@ -314,7 +314,7 @@ function shipTo() {
 
 				 url:  apipath_shipto+"syncRep/"+str,
 				 success: function(result) {
-					 alert (loginResult);
+					 alert (result);
 						 loginResult=result
 
 						if (loginResult==''){
