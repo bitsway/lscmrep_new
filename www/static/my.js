@@ -337,13 +337,14 @@ function shipTo() {
 									var ob = $("#shiptoCombo");
 									var value="";
 									var text="Select Shipto";
+									alert (localStorage.shipto)
 									alert (clientArray.length)
-									for (var c=0; c<clientArray.length; c++){
+									for (var c=0; c< clientArray.length; c++){
 										var clientIdNameArray = clientArray[c].split('<fd>');
 										
 										var shipto_code=clientIdNameArray[0]
 										var shiptoparty_name=clientIdNameArray[1]
-										
+										alert (clientArray[c])
 										
 										ob.prepend("<option value='"+ shipto_code+'|'+shiptoparty_name  +"'>" + shipto_code+'|'+shiptoparty_name + "</option>");
 										}	
