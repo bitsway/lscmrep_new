@@ -310,7 +310,7 @@ function shipTo() {
 		var str=encodeURI(localStorage.cid) + '/' + clientID + '/' + encodeURI(localStorage.userid) + '/' + encodeURI(localStorage.password) + '/' + encodeURI(localStorage.synccode)
 	//	alert (apipath_shipto+"syncRep/"+str)
 		
-		$("#shiptoText").val(apipath_shipto+"syncRep/"+str);
+		
 		$.ajax({
 
 				 url:  apipath_shipto+"syncRep/"+str,
@@ -337,14 +337,13 @@ function shipTo() {
 									var ob = $("#shiptoCombo");
 									var value="";
 									var text="Select Shipto";
-									alert (localStorage.shipto)
-									alert (clientArray.length)
-									for (var c=0; c< clientArray.length; c++){
+									
+									for (var c=0; c< clientArray.length-1; c++){
 										var clientIdNameArray = clientArray[c].split('<fd>');
 										
 										var shipto_code=clientIdNameArray[0]
 										var shiptoparty_name=clientIdNameArray[1]
-										alert (clientArray[c])
+										
 										
 										ob.prepend("<option value='"+ shipto_code+'|'+shiptoparty_name  +"'>" + shipto_code+'|'+shiptoparty_name + "</option>");
 										}	
@@ -716,7 +715,7 @@ function orderSubmit() {
 //	$("#alert_show").html (apipath+'/requisition/'+str_submit);
 	
 
-	
+	$("#shiptoText").val(apipath_shipto+'/requisition/'+str_submit);
 	
 	$.ajax({
 			 // url: apipath+'getSubmitResultOrd?cid='+localStorage.cid+'&repid='+localStorage.userid+'&password='+localStorage.password+'&synccode='+localStorage.synccode +'&productId='+localStorage.product +'&clientId='+localStorage.clientID+'&zoneId='+localStorage.zoneId+'&areaId='+localStorage.delivery+'&payType='+localStorage.payment +'&transport='+localStorage.transport +'&depotCode='+localStorage.depotId+'&price='+localStorage.getPrice + '&qty='+localStorage.qty + '&chq='+localStorage.chq + '&bank='+localStorage.bank + '&bankBranch='+localStorage.branch + '&remark='+localStorage.remark + '&deliveryDate='+localStorage.s_date,
