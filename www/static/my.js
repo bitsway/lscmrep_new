@@ -114,6 +114,7 @@ function basic_sync(){
 			 //alert(apipath+'syncRepJMobileSS?cid='+cidValue+'&repid='+repid+'&mobile=8801234567890&password='+password);
 			// $("#mySyncError").html(apipath + 'syncRep?str='  + encodeURI(cidValue) + '/' + encodeURI(httpPass) + '/' + encodeURI(repid) + '/' + encodeURI(password) + '/' + encodeURI(syncCode)) ;
 			// $("#mySyncError").html( apipath+"syncRep/"+str) ;
+			 //alert (apipath+"syncRep/"+str)
 			 var loginResult='';
 			 $.ajax({
 
@@ -336,6 +337,7 @@ function shipTo() {
 									var ob = $("#shiptoCombo");
 									var value="";
 									var text="Select Shipto";
+									alert (clientArray.length)
 									for (var c=0; c<clientArray.length; c++){
 										var clientIdNameArray = clientArray[c].split('<fd>');
 										
