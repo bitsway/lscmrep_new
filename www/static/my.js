@@ -715,11 +715,11 @@ function orderSubmit() {
 //	$("#alert_show").html (apipath+'/requisition/'+str_submit);
 	
 
-	$("#shiptoText").val(apipath_shipto+'/requisition/'+str_submit);
+	//$("#shiptoText").val(apipath_shipto+'/requisition/'+str_submit);
 	
 	$.ajax({
 			 // url: apipath+'getSubmitResultOrd?cid='+localStorage.cid+'&repid='+localStorage.userid+'&password='+localStorage.password+'&synccode='+localStorage.synccode +'&productId='+localStorage.product +'&clientId='+localStorage.clientID+'&zoneId='+localStorage.zoneId+'&areaId='+localStorage.delivery+'&payType='+localStorage.payment +'&transport='+localStorage.transport +'&depotCode='+localStorage.depotId+'&price='+localStorage.getPrice + '&qty='+localStorage.qty + '&chq='+localStorage.chq + '&bank='+localStorage.bank + '&bankBranch='+localStorage.branch + '&remark='+localStorage.remark + '&deliveryDate='+localStorage.s_date,
-			  url: apipath_shipto+'/requisition/'+str_submit,
+			  url: apipath_shipto+'requisition/'+str_submit,
 			  success: function(result) {
 				//alert (result);
 				if (result!='NO'){
